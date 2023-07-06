@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+</head>
+<body>
+    <script>
+        // 객체를 만들어서 적용
+        let arr = [ {name : "park", age : 24}, {name : "kim", age : 25}, 
+        {name : "gang", age : 23}, {name : "jung", age : "28"}]
+        for (i in arr) {
+            /*for (a in arr[i]){
+                document.write(a + "<br/>")
+            }*/
+            document.write(arr[i] + "<br/>")
+            //console.log(arr[i])
+            document.write(arr[i].name + "<br/>")
+            document.write(arr[i].age + "<br/>")
+        }
+        //document.write(arr[1].age + arr[3].age + "<br/>")
+
+        // 객체의 method 안에서 this를 사용해서 속성 사용하기
+        let object1 = {name : "park", age : "23", alertFunc : function(){
+            alert(this.name + " " + this.age)
+        }}
+        // 선언한 method 호출
+        object1.alertFunc()
+
+
+        // 생성자가 없는 경우 동일한 모양의 2개의 객체 생성
+        let object2 = [{name : "lee", poin : function(){document.write(this.name)}},
+        {name : "kim", poin : function(){document.write(this.name)}}];
+
+        for(index in object2){
+            object2[index].poin();
+        }
+
+
+        // 생성자 - 함수 안에서 this를 사용했기 때문에
+        let person = function(name){
+            this.name = name;
+            this.poin = function(){document.write(this.name + "<br/>")}
+        }
+        // method는 다시 중복해서 만들지 않고 속성만 설정해서 인스턴스를 생성
+        // 생성자를 이용해서 인스턴스를 만들 때는 new 와 함께 호출해야 함.
+        // heap 이라는 공간에 인스턴스를 생성함.
+        object3 = [new person("lee"), new person("kim")];
+        for (index in object3){
+            object3[index].poin();
+        }
+
+
+        // 클래스를 생성하고 인스턴스를 생성
+        // 클래스의 이름은 관습적으로 대문자로 시작함
+        let Doc = class{
+            constructor(name){
+                this.name = name;
+            }
+            // 클래스 안에서 메서드를 만들 때에는 let 이나 function 을
+            // 생략할 수 있음
+            poin(){ // < let poin = function(){} 이 이렇게 생략된 것
+                document.write(this.name + "<br/>")
+            }
+        }
+        object4 = [new Doc("choi"), new Doc("Na")];
+        for (index in object4){
+            object4[index].poin();
+        }
+
+
+        // getter, setter 활용
+        let Getset = class{
+            // 생성자
+            constructor(name, age){
+                this.name = name;
+                this.age = age;
+            }
+            // 메서드
+            poin(){
+                document.write(this.name + " = " + this.age);
+            }
+            //getter
+            getName(){
+                return this.name
+            }
+            getAge(){
+                return this.age
+            }
+            // setter
+            // 여기서는 단순하게 대입만 하지만 검색과 같은 경우에는 
+            // 이 과정에서 데이터에 수정을 가하기도 함
+            setName(name){
+                this.name = name;
+            }
+            setAge(age){
+                // 유효성 검사를 하는 방식
+                // 올바른 데이터인지 확인하고 아니면 대입하지 않음
+                if(age < 0){
+                    alert("적절하지 않은 나이");
+                    return
+                }
+                this.age = age
+            }
+        }
+
+        let object5 = new Getset("park", "25");
+        object5.setAge(4);
+        object5.poin();
+
+    </script>
+    
+</body>
+</html>

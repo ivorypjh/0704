@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>string</title>
+</head>
+<body>
+    <script>
+        // string을 모두 대문자로 변경
+        let testString = "    qwerasdf  ";
+        let testUpper = testString.toUpperCase();
+        // 좌우 공백 제거
+        let result = testUpper.trim();
+        // trim을 먼저 적용하고 uppercase를 적용하는게 더 나은 방식
+        // testString.trin().toUpperCase(); 와 같이 한 줄로도 가능
+        console.log(testUpper);
+        console.log(result);
+
+        // 파일 명에서 확장자를 추출하기
+        let fileName = "file.html"
+        let devideArr = fileName.split(".");
+        console.log(devideArr[devideArr.length - 1])
+
+        // . 의 위치를 찾고 그 뒤를 substring 으로 나누는 방식
+        let index = fileName.indexOf(".");
+        console.log(fileName.substring(index + 1));
+
+        // 문자열에서 CGGC 의 모든 위치를 출력하기
+        // 중첩되는 경우 앞의 문자열 1번만 적용
+        let originString = "AFQHQCHCGGCAFECGGCGGCAF"
+        let ar = originString.indexOf("CGGC");
+        console.log(ar);
+    </script>
+    
+</body>
+</html>

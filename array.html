@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Object</title>
+</head>
+<body>
+    <script>
+        let arr = [1, 5, 14, 36, 23, 84]
+        // 데이터의 갯수
+        console.log(arr.length);
+        // 순회
+        for (index in arr){
+            console.log(arr[index])
+        }
+        // 순회하면서 작업 - forEach
+        // 배열을 순회하면서 데이터를 하나씩 접근하는 함수
+        // 첫번째는 데이터, 두번째는 인덱스, 세번째는 배열이 들어감
+        arr.forEach((element, index, array) => {
+            console.log(element)
+            //console.log(index)
+        })
+        // map은 사용하는 형태는 forEach 와 동일한데 함수가 데이터를 리턴해야 함
+        // 리턴한 데이터를 모아서 다시 배열로 만들어서 리턴
+        let result = arr.map((element, index, array) => {
+            return (element + "") // 결과에 "" 를 더해서 문자열로 만듦
+            // return element % 2 == 0   짝수 element 만 필터링
+        });
+        console.log(result);
+
+        let list = [
+            {name : "lee", age : "32"},
+            {name : "kim", age : "25"},
+            {name : "park", age : "9"},
+            {name : "gang", age : "20"}
+        ]
+
+        // 나이가 20 이상인 데이터 추출
+        let ageFilter = list.filter((element, index, array) => {
+            return element.age >= 20
+        })
+        // 추출한 대상의 이름 출력
+        for (index in ageFilter){
+            console.log(ageFilter[index].name)
+        }
+
+    </script>
+    
+</body>
+</html>

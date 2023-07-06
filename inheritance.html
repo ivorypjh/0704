@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inheritance</title>
+</head>
+<body>
+    <script>
+        let Superclass = class { // 혹은 class = Superclass{} 형태도 가능함
+            superMethod(){
+                document.write("상위 클래스의 method")
+            }
+        }
+
+        // super로부터 상속을 받는 sub class
+        class Subclass extends Superclass{
+            // overriding을 통해 재정의
+            superMethod(){
+                // 상위 클래스의 메서드 활용
+                super.superMethod();
+                // overriding
+                document.write("하위 클래스의 method")
+            }
+        }
+
+        let object = new Subclass();
+        // sub에는 method가 존재하지 않지만 상속을 받았기에 호출이 가능함.
+        object.superMethod();
+    </script>
+    
+</body>
+</html>
